@@ -62,15 +62,14 @@ Return ONLY valid JSON in this format:
 
         return result
 
-    except Exception:
+    except Exception as e:
         return {
-            "risk_score": 90,
-            "scam_type": "Phishing",
-            "url_status": "Suspicious URL detected",
+            "risk_score": 10,
+            "scam_type": "Unknown",
+            "url_status": "No suspicious URL detected",
             "red_flags": [
-                "Contains suspicious URL",
-                "Requests OTP",
-                "Creates urgency"
+                "AI analysis failed",
+                str(e)
             ],
-            "recommendation": "Do not click links or share personal information."
+            "recommendation": "Please try again. If the issue continues, check the AI API key or backend logs."
         }
